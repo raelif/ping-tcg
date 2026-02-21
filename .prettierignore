@@ -1,0 +1,32 @@
+# node_modules
+node_modules
+/.next
+/out
+
+# build / produzioni
+/dist
+/build
+
+# file di sistema
+.DS_Store
+Thumbs.db
+
+# pacchetti lock
+package-lock.json
+yarn.lock
+.pnpm-lock.yaml
+
+# configurazioni IDE
+.vscode/
+
+# Prisma
+prisma/migrations
+prisma/.env
+
+# altri artefatti
+public/
+.env*
+*.log
+
+# eventuali cartelle generate da test o storybook
+coverage/
