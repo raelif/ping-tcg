@@ -4,7 +4,7 @@ import {
 	QueryClient
 } from "@tanstack/react-query";
 
-import { progCardFetcher } from "@/data/fetcher";
+import { progCardFetcher } from "@/lib/fetcher";
 import CardList from "@/components/CardList";
 import { initialState, LIMIT } from "@/utils/constants";
 

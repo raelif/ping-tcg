@@ -5,10 +5,11 @@ import Image from "next/image";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 
-import { progCardFetcher } from "@/data/fetcher";
+import { progCardFetcher } from "@/lib/fetcher";
 import Pagination from "@/components/Pagination";
-import { initialState, LIMIT } from "@/utils/constants";
+
 import { debounceCall } from "@/utils/debounce";
+import { initialState, LIMIT } from "@/utils/constants";
 
 const CardList = () => {
 	const [inputName, setInputName] = useState("");
