@@ -5,6 +5,8 @@ import "./globals.css";
 import { auth } from "@/auth";
 import Navbar from "@/components/Navbar";
 
+import Providers from "./providers";
+
 const geistSans = Geist({
 	variable: "--font-geist-sans",
 	subsets: ["latin"]
@@ -30,8 +32,10 @@ const RootLayout = async ({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<Navbar user={session?.user} />
-				{children}
+				<Providers>
+					<Navbar user={session?.user} />
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);
