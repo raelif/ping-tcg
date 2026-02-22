@@ -7,11 +7,17 @@ import {
 	QueryClientProvider
 } from "@tanstack/react-query";
 
+import { SEARCH_STALE_TIME } from "@/utils/constants";
+
 function makeQueryClient() {
 	return new QueryClient({
 		defaultOptions: {
 			queries: {
-				staleTime: 60 * 1000
+				staleTime: SEARCH_STALE_TIME,
+				initialDataUpdatedAt: 1,
+				refetchOnMount: false,
+				refetchOnReconnect: false,
+				refetchOnWindowFocus: false
 			}
 		}
 	});

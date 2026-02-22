@@ -5,11 +5,14 @@ export type CardFetcherArgs = Partial<{
 	pagination: Partial<{ page: number; limit: number }>;
 }>;
 
-export type Card = {
+export type CardBrief = {
 	id: string;
 	localId: string;
 	name: string;
 	image?: string;
+};
+
+export type Card = CardBrief & {
 	// Card type: “Pokemon”, “Energy”, or “Trainer”
 	category: string;
 	// Card rarity (Common, Uncommon, Rare, etc.)
@@ -21,7 +24,7 @@ export const cardFetcher = async ({
 	type,
 	rarity,
 	pagination
-}: CardFetcherArgs): Promise<Card[]> => {
+}: CardFetcherArgs): Promise<CardBrief[]> => {
 	const queryParams = new URLSearchParams();
 	if (name) {
 		queryParams.append("name", `like:${name}`);
