@@ -67,10 +67,25 @@ model VerificationToken {
 }
 
 model Deck {
-  id        Int     @id @default(autoincrement())
+  id        String     @id @default(cuid())
   title     String
-  content   String?
-  published Boolean @default(false)
   authorId  String
-  author    User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  deckCards DeckCard[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DeckCard {
+  id        String @id @default(cuid())
+  deckId    String
+  deck      Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  cardId    String
+  cardName  String
+  cardImage String
+  quantity  Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
