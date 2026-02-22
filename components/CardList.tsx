@@ -2,26 +2,15 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 
-import { progCardFetcher, type CardBrief } from "@/data/fetcher";
+import { progCardFetcher } from "@/data/fetcher";
 import Pagination from "@/components/Pagination";
-import { LIMIT } from "@/utils/constants";
+import { initialState, LIMIT } from "@/utils/constants";
 import { debounceCall } from "@/utils/debounce";
 
-type CardListProps = {
-	initialCards: CardBrief[];
-};
-
-const initialState = {
-	name: "",
-	type: "",
-	rarity: "",
-	page: 1
-};
-
-const CardList = ({ initialCards }: CardListProps) => {
+const CardList = () => {
 	const [inputName, setInputName] = useState("");
 	const [inputType, setInputType] = useState("");
 	const [inputRarity, setInputRarity] = useState("");
@@ -42,7 +31,7 @@ const CardList = ({ initialCards }: CardListProps) => {
 			rarity,
 			pagination: { page, limit: LIMIT }
 		}),
-		initialData: initialCards
+		placeholderData: keepPreviousData
 	});
 
 	const setName = useCallback((newName: string) => {
@@ -117,10 +106,10 @@ const CardList = ({ initialCards }: CardListProps) => {
 						Error loading cards
 					</p>
 				)}
-				{!isFetching && cards.length === 0 && (
+				{!isFetching && cards?.length === 0 && (
 					<p className="col-span-full text-center">No cards found.</p>
 				)}
-				{cards.map((card, idx) => (
+				{cards?.map((card, idx) => (
 					<div
 						key={card.id}
 						className="rounded border bg-white p-4 shadow transition hover:shadow-lg"

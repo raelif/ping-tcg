@@ -1,10 +1,22 @@
-import { cardFetcher } from "@/data/fetcher";
+import {
+	dehydrate,
+	HydrationBoundary,
+	QueryClient
+} from "@tanstack/react-query";
+
+import { progCardFetcher } from "@/data/fetcher";
 import CardList from "@/components/CardList";
-import { LIMIT } from "@/utils/constants";
+import { initialState, LIMIT } from "@/utils/constants";
 
 const HomePage = async () => {
-	const cards = await cardFetcher({
-		pagination: { page: 1, limit: LIMIT }
+	const queryClient = new QueryClient();
+	const { name, type, rarity, page } = initialState;
+
+	await queryClient.prefetchQuery({
+		queryKey: ["CardSearch", name, type, rarity, page],
+		queryFn: progCardFetcher({
+			pagination: { page, limit: LIMIT }
+		})
 	});
 
 	return (
@@ -13,7 +25,9 @@ const HomePage = async () => {
 				<p className="text-lg font-semibold">
 					Welcome to the Pokemon TCG Database
 				</p>
-				<CardList initialCards={cards} />
+				<HydrationBoundary state={dehydrate(queryClient)}>
+					<CardList />
+				</HydrationBoundary>
 			</main>
 		</div>
 	);
