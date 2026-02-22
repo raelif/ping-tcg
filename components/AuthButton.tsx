@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { signIn, signOut } from "next-auth/react";
+import clsx from "clsx";
 
 type AuthButtonProps = {
 	isLogged: boolean;
@@ -23,14 +24,20 @@ const AuthButton = ({ isLogged }: AuthButtonProps) => {
 	}, [isLogged]);
 
 	return (
-		<button
-			className={`${isLogged ? "bg-red-700 hover:bg-red-900" : "bg-blue-500 hover:bg-blue-700"} text-white font-bold py-2 px-4 rounded cursor-pointer`}
-			type="button"
-			disabled={isLoading}
-			onClick={handleAuth}
-		>
-			{isLogged ? "LOGOUT" : "LOGIN"}
-		</button>
+		<div className="block px-4 py-2">
+			<button
+				className={clsx(
+					"bg-red-700 hover:bg-red-800",
+					"cursor-pointer rounded px-4 py-2 font-bold text-white",
+					isLoading && "cursor-not-allowed opacity-40"
+				)}
+				type="button"
+				disabled={isLoading}
+				onClick={handleAuth}
+			>
+				{isLogged ? "LOGOUT" : "LOGIN"}
+			</button>
+		</div>
 	);
 };
 
