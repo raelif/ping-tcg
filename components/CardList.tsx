@@ -10,6 +10,7 @@ import Pagination from "@/components/Pagination";
 
 import { debounceCall } from "@/utils/debounce";
 import { initialState, LIMIT } from "@/utils/constants";
+import Link from "next/link";
 
 const CardList = () => {
 	const [inputName, setInputName] = useState("");
@@ -111,11 +112,14 @@ const CardList = () => {
 					<p className="col-span-full text-center">No cards found.</p>
 				)}
 				{cards?.map((card, idx) => (
-					<div
+					<Link
 						key={card.id}
+						href={`/cards/${card.id}`}
 						className="rounded border bg-white p-4 shadow transition hover:shadow-lg"
 					>
-						<p className="text-lg font-semibold">{card.name}</p>
+						<p className="text-center text-lg font-semibold">
+							{card.name}
+						</p>
 						<div
 							className="relative"
 							style={{ aspectRatio: "600/825" }}
@@ -133,7 +137,7 @@ const CardList = () => {
 								sizes="(min-width: 1280px) 400px, (min-width: 768px) 300px, 200px"
 							/>
 						</div>
-					</div>
+					</Link>
 				))}
 			</div>
 

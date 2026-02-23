@@ -11,15 +11,18 @@ type DeckListProps = {
 const DeckList = ({ authorId, decks }: DeckListProps) => {
 	return (
 		<div className="flex h-screen flex-col items-start gap-4">
-			<form action={createDeck.bind(null, { authorId })}>
+			<form
+				className="rounded border border-gray-300"
+				action={createDeck.bind(null, { authorId })}
+			>
 				<input
-					className="rounded border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+					className="rounded-l px-3 py-2 focus:ring-2 focus:ring-blue-200 focus:outline-none"
 					type="text"
 					name="title"
 					placeholder="Title"
 				/>
 				<button
-					className="cursor-pointer rounded bg-red-700 px-4 py-2 font-bold text-white hover:bg-red-800"
+					className="cursor-pointer rounded-r bg-red-700 px-4 py-2 font-bold text-white hover:bg-red-800"
 					type="submit"
 				>
 					Create

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { usePathname } from "next/navigation";
 import { signIn, signOut } from "next-auth/react";
 import clsx from "clsx";
 
@@ -10,18 +11,19 @@ type AuthButtonProps = {
 
 const AuthButton = ({ isLogged }: AuthButtonProps) => {
 	const [isLoading, setIsLoading] = useState(false);
+	const callbackUrl = usePathname();
 
 	const handleAuth = useCallback(async () => {
 		setIsLoading(true);
 		try {
 			await (isLogged
-				? signOut({ callbackUrl: "/" })
-				: signIn("github", { callbackUrl: "/" }));
+				? signOut({ callbackUrl })
+				: signIn("github", { callbackUrl }));
 		} catch (error) {
 			console.error(error);
 			setIsLoading(false);
 		}
-	}, [isLogged]);
+	}, [callbackUrl, isLogged]);
 
 	return (
 		<div className="block px-4 py-2">

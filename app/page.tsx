@@ -20,7 +20,7 @@ const HomePage = async () => {
 	});
 
 	return (
-		<div className="flex items-center justify-center bg-zinc-50 font-sans">
+		<div className="flex items-center justify-center font-sans">
 			<main className="container mx-auto px-8 py-8 xl:px-32">
 				<p className="text-lg font-semibold">
 					Welcome to the Pokemon TCG Database

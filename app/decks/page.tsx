@@ -14,20 +14,20 @@ const getDeckListPageProps = async () => {
 			where: { authorId: session.user.id }
 		});
 
-		return { authorId: session.user.id ?? "", decks };
+		return { user: session.user, decks };
 	} catch (error) {
 		console.error(error);
-		return { authorId: "", decks: [] };
+		return { decks: [] };
 	}
 };
 
 const DeckListPage = async () => {
-	const { authorId, decks } = await getDeckListPageProps();
+	const { user, decks } = await getDeckListPageProps();
 
 	return (
-		<div className="flex items-center justify-center bg-zinc-50 font-sans">
+		<div className="flex items-center justify-center font-sans">
 			<main className="container mx-auto px-8 py-8 xl:px-32">
-				<DeckList authorId={authorId} decks={decks} />
+				{user?.id && <DeckList authorId={user.id} decks={decks} />}
 			</main>
 		</div>
 	);

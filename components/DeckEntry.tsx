@@ -21,9 +21,7 @@ const DeckEntry = ({ deck }: DeckEntryProps) => {
 				<button
 					disabled={isDeleting}
 					className="ml-2 cursor-pointer rounded-full p-1 hover:bg-red-100"
-					onClick={() =>
-						startDelete(async () => await deleteDeck(deck.id))
-					}
+					onClick={() => startDelete(() => deleteDeck(deck.id))}
 				>
 					{isDeleting ? (
 						<Trash className="h-5 w-5 text-red-500" />
