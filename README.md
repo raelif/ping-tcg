@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ping TCG
 
-## Getting Started
+This repository contains a **Next.js** project for managing decks and cards, with authentication powered by NextAuth and a Prisma-backed database.
 
-First, run the development server:
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm or yarn
+- Access to project environment credentials (you should have received these via email)
+
+### Setup
+
+1. **Clone the repository**
+
+    ```bash
+    git clone <repo-url>
+    cd ping-tcg
+    ```
+
+2. **Install dependencies**
+
+    ```bash
+    npm install
+    # or yarn install
+    ```
+
+3. **Environment variables**
+    - Copy the sample file and fill in the values you received by email.
+        ```bash
+        cp .env.sample .env
+        ```
+    - Edit `.env` and add the provided credentials (e.g. database URL, NextAuth secret, GitHub OAuth keys, etc.).
+    - **Do not commit** your `.env` file. It's excluded from version control.
+
+4. **Prisma setup**
+   If you're running the project locally and need to initialize the database:
+    ```bash
+    npx prisma migrate dev
+    ```
+    > This will create the development database using your `.env` configuration.
+
+### Running the Project
+
+To start the development server:
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+### Additional Notes
 
-To learn more about Next.js, take a look at the following resources:
+- The project uses TypeScript and is configured via `tsconfig.json`.
+- Authentication is handled via `NextAuth` with GitHub provider; make sure your GitHub OAuth keys are in `.env`.
+- The Prisma schema is located at `prisma/schema.prisma`; migrations are stored under `prisma/migrations`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
