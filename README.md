@@ -27,7 +27,8 @@ This repository contains a **Next.js** project for managing decks and cards, wit
     ```
 
 3. **Environment variables**
-    - Copy the sample file and fill in the values you received by email.
+    - Fill the sample file with the values you received by email or generate your own.
+    - Copy the sample file into the env file.
         ```bash
         cp .env.sample .env
         ```
