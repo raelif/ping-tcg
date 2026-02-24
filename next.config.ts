@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import withLitSSR from "@lit-labs/nextjs";
 
 const nextConfig: NextConfig = {
 	/* config options here */
@@ -11,7 +12,8 @@ const nextConfig: NextConfig = {
 				pathname: "/en/**"
 			}
 		]
-	}
+	},
+	transpilePackages: ["lit", "@lit-labs/ssr-react", "@lit-labs/nextjs"]
 };
 
-export default nextConfig;
+export default withLitSSR()(nextConfig);
