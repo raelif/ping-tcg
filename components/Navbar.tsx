@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { User } from "next-auth";
 import { Menu } from "lucide-react";
 
-import { navbar } from "@/data/static/navbar";
+import { navbar } from "@/data/navbar";
 import AuthButton from "./AuthButton";
 
 type NavbarProps = { user?: User | null };

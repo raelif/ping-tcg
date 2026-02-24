@@ -1,23 +1,11 @@
+import type { CardBrief } from "@/utils/types";
+
 export type CardFetcherArgs = Partial<{
 	name: string;
 	type: string;
 	rarity: string;
 	pagination: Partial<{ page: number; limit: number }>;
 }>;
-
-export type CardBrief = {
-	id: string;
-	localId: string;
-	name: string;
-	image?: string;
-};
-
-export type Card = CardBrief & {
-	// Card type: “Pokemon”, “Energy”, or “Trainer”
-	category: string;
-	// Card rarity (Common, Uncommon, Rare, etc.)
-	rarity?: string;
-};
 
 export const cardFetcher = async ({
 	name,
