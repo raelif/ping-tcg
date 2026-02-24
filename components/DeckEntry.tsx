@@ -18,6 +18,12 @@ const DeckEntry = ({ deck }: DeckEntryProps) => {
 		<div className="flex justify-between gap-10">
 			<span className="text-lg font-semibold">{deck.title}</span>
 			<div className="inline-flex">
+				<Link
+					href={`/decks/${deck.id}`}
+					className="ml-2 cursor-pointer rounded-full p-1 hover:bg-blue-100"
+				>
+					<LinkIcon className="h-5 w-5 text-blue-500" />
+				</Link>
 				<button
 					disabled={isDeleting}
 					className="ml-2 cursor-pointer rounded-full p-1 hover:bg-red-100"
@@ -29,12 +35,6 @@ const DeckEntry = ({ deck }: DeckEntryProps) => {
 						<Trash2 className="h-5 w-5 text-stone-500" />
 					)}
 				</button>
-				<Link
-					href={`/decks/${deck.id}`}
-					className="ml-2 cursor-pointer rounded-full p-1 hover:bg-blue-100"
-				>
-					<LinkIcon className="h-5 w-5 text-blue-500" />
-				</Link>
 			</div>
 		</div>
 	);

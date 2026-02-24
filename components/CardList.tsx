@@ -1,16 +1,17 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 
 import { progCardFetcher } from "@/lib/fetcher";
 import Pagination from "@/components/Pagination";
 
+import { PokemonCard } from "@/lit-components/PokemonCardWrapper";
+
 import { debounceCall } from "@/utils/debounce";
 import { initialState, LIMIT } from "@/utils/constants";
-import Link from "next/link";
 
 const CardList = () => {
 	const [inputName, setInputName] = useState("");
@@ -111,32 +112,18 @@ const CardList = () => {
 				{!isFetching && cards?.length === 0 && (
 					<p className="col-span-full text-center">No cards found.</p>
 				)}
-				{cards?.map((card, idx) => (
-					<Link
-						key={card.id}
-						href={`/cards/${card.id}`}
-						className="rounded border bg-white p-4 shadow transition hover:shadow-lg"
-					>
-						<p className="text-center text-lg font-semibold">
-							{card.name}
-						</p>
-						<div
-							className="relative"
-							style={{ aspectRatio: "600/825" }}
-						>
-							<Image
-								fill
-								src={
-									card.image
-										? `${card.image}/high.webp`
-										: "/back.webp"
-								}
-								alt={card.name}
-								style={{ objectFit: "contain" }}
-								loading={idx < 9 ? "eager" : "lazy"}
-								sizes="(min-width: 1280px) 400px, (min-width: 768px) 300px, 200px"
-							/>
-						</div>
+
+				{cards?.map(card => (
+					<Link key={card.id} href={`/cards/${card.id}`}>
+						<PokemonCard
+							key={card.id}
+							name={card.name}
+							image={
+								card.image
+									? `${card.image}/high.webp`
+									: "/back.webp"
+							}
+						/>
 					</Link>
 				))}
 			</div>
